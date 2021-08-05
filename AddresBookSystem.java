@@ -5,14 +5,12 @@ import java.util.Scanner;
 public class AddresBookSystem {
 	public int name;
 	Person p = new Person();
-	static Person[] group = new Person[2];
+	static Person[] group = new Person[5];
 
 	public static void main(String[] args) {
 		System.out.println(" Welcome to Address Book Program ");
 
-		
-
-		for (int i = 0; i < 2; i++) {
+		for (int i = 0; i < 5; i++) {
 			System.out.println("Enter Contact of Person" + (i + 1));
 			group[i] = new Person();
 			getInfo(group[i]);
@@ -23,22 +21,50 @@ public class AddresBookSystem {
 		if (sc.nextInt() == 1) {
 			searchPerson();
 		}
+		System.out.println("Want to Delete? Enter 1 for Yes, 2 for No");
+			if (sc.nextInt() == 1) {
+			deletePerson();
+		}
+
 	}
 
 	public static void searchPerson() {
-		System.out.println("Enter Fisrt Name: ");
+		System.out.println("\nEnter Fisrt Name: ");
 		Scanner sc = new Scanner(System.in);
 		String firstName = sc.next();
 		int flag = 0;
-		for (int i = 0; i < 2; i++) {
+		for (int i = 0; i < 5; i++) {
 			System.out.println(group[i].fName);
 			if (firstName.equals(group[i].fName)) {
-				System.out.println("Edit---->");
+				System.out.println("\nEdit---->");
 				getInfo(group[i]);
 				flag = 1;
 				break;
 			}
+		}
+		if (flag == 0) {
+			System.out.println("Couldn't Find it!");
+		}
+	}
 
+	public static void deletePerson() {
+		System.out.println("\nEnter Fisrt Name: ");
+		Scanner sc = new Scanner(System.in);
+		String firstName = sc.next();
+		int flag = 0;
+		for (int i = 0; i < 5; i++) {
+			System.out.println(group[i].fName);
+			if (firstName.equals(group[i].fName)) {
+				group[i].address = null;
+				group[i].city = null;
+				group[i].email = null;
+				group[i].fName = null;
+				group[i].lName = null;
+				group[i].pNumber = 0;
+				group[i].state = null;
+				group[i].zip = 0;
+				System.out.println("Deleted..!!");
+			}
 		}
 		if (flag == 0) {
 			System.out.println("Couldn't Find it!");
