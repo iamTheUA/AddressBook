@@ -2,18 +2,57 @@ package Day9;
 
 import java.util.Scanner;
 
-public class AddresBookSystem extends Person {
+public class AddresBookSystem {
 	public int name;
+	Person p = new Person();
+	static Person[] group = new Person[2];
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		Scanner sc = new Scanner(System.in);
 		System.out.println(" Welcome to Address Book Program ");
-		Person p1 = new Person();
+
+		
+
+		for (int i = 0; i < 2; i++) {
+			System.out.println("Enter Contact of Person" + (i + 1));
+			group[i] = new Person();
+			getInfo(group[i]);
+
+		}
+		System.out.println("Want to Edit? Enter 1 for Yes, 2 for No");
+		Scanner sc = new Scanner(System.in);
+		if (sc.nextInt() == 1) {
+			searchPerson();
+		}
+	}
+
+	public static void searchPerson() {
+		System.out.println("Enter Fisrt Name: ");
+		Scanner sc = new Scanner(System.in);
+		String firstName = sc.next();
+		int flag = 0;
+		for (int i = 0; i < 2; i++) {
+			System.out.println(group[i].fName);
+			if (firstName.equals(group[i].fName)) {
+				System.out.println("Edit---->");
+				getInfo(group[i]);
+				flag = 1;
+				break;
+			}
+
+		}
+		if (flag == 0) {
+			System.out.println("Couldn't Find it!");
+		}
+	}
+
+	public static void getInfo(Person p1) {
+		Scanner sc = new Scanner(System.in);
 		System.out.println("Enter First name: ");
-		p1.setfName(sc.next());
+		String str = sc.next();
+		p1.setfName(str);
 		System.out.println("Enter Last name: ");
-		p1.setlName(sc.next());
+		str = sc.next();
+		p1.setlName(str);
 		System.out.println("Enter Address: ");
 		p1.setAddress(sc.next());
 		System.out.println("Enter City: ");
@@ -26,7 +65,17 @@ public class AddresBookSystem extends Person {
 		p1.setpNumber(sc.nextLong());
 		System.out.println("Enter Email: ");
 		p1.setEmail(sc.next());
+	}
 
+	public static void showInfo(Person p) {
+		System.out.println("First name: " + p.getfName());
+		System.out.println("Last name: " + p.getlName());
+		System.out.println("Address: " + p.getAddress());
+		System.out.println("City: " + p.getCity());
+		System.out.println("State: " + p.getState());
+		System.out.println("Zip: " + p.getZip());
+		System.out.println("Phone Number: " + p.getpNumber());
+		System.out.println("Email: " + p.getEmail());
 	}
 }
 
@@ -103,4 +152,5 @@ class Person {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
 }
