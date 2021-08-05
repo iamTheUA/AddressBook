@@ -4,7 +4,6 @@ import java.util.Scanner;
 
 public class AddresBookSystem {
 	public int name;
-	Person p = new Person();
 	static Person[] group = new Person[5];
 
 	public static void main(String[] args) {
